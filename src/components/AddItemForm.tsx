@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
-function AddItemForm() {
+function AddItemForm(props: any) {
+  const { setDescription, description } = props;
   const domInputId = 'new-todo-input';
   const [captureInput, setCaptureInput] = useState<string>();
 
   const handleInputText = () => {
+    const listDescription = [...description];
+    listDescription.push(captureInput);
+    setDescription(listDescription);
     setCaptureInput('');
   };
 
