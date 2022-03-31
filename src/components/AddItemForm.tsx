@@ -1,38 +1,37 @@
 import React, { useState } from 'react';
 
-function AddItemForm(props: any) {
-  const { setDescription, description } = props;
-  const domInputId = 'new-todo-input';
-  const [captureInput, setCaptureInput] = useState<string>();
+interface ListStateType {
+  taskList: string[];
+  setTaskList: (value: string[]) => void;
+}
+function AddItemForm({ taskList, setTaskList }: ListStateType) {
+  const [inputValue, setInputValue] = useState<string>('');
 
-  const handleInputText = () => {
-    const listDescription = [...description];
-    listDescription.push(captureInput);
-    setDescription(listDescription);
-    setCaptureInput('');
+  const handleInputText = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (inputValue !== '') {
+      setTaskList([...taskList, inputValue]);
+      setInputValue('');
+    }
   };
 
   return (
     <form onSubmit={handleInputText}>
       <h2 className="label-wrapper">
-        <label htmlFor={domInputId} className="label__lg">
+        <label htmlFor="new-todo-input" className="label__lg">
           Lista de tarefas PodCodar
         </label>
       </h2>
       <input
         type="text"
-        value={captureInput}
-        id={domInputId}
+        value={inputValue}
+        id="new-todo-input"
         className="input input__lg"
-        name={domInputId}
+        name="new-todo-input"
         autoComplete="off"
-        onChange={(e) => setCaptureInput(e.target.value)}
+        onChange={(e) => setInputValue(e.target.value)}
       />
-      <button
-        type="button"
-        className="btn btn__primary btn__lg"
-        onClick={handleInputText}
-      >
+      <button type="submit" className="btn btn__primary btn__lg">
         Add Task
       </button>
     </form>

@@ -1,9 +1,11 @@
 import React from 'react';
-import ListModel from './TaskItem';
+import TaskItem from './TaskItem';
 
-function TaskDashboard(props: any) {
-  const { description } = props;
-  const listName = description.map((name: string) => <ListModel name={name} />);
+interface ListType {
+  taskList: string[];
+}
+
+function TaskDashboard({ taskList }: ListType) {
   return (
     <>
       <div className="filters btn-group stack-exception">
@@ -28,7 +30,9 @@ function TaskDashboard(props: any) {
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading"
       >
-        <li className="todo stack-small">{listName}</li>
+        {taskList.map((name: string) => (
+          <TaskItem key={name} name={name} />
+        ))}
       </ul>
     </>
   );

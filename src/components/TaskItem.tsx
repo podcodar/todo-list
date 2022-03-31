@@ -1,11 +1,15 @@
 import React from 'react';
 
-function ListModel(props: any) {
-  const { name } = props;
+interface ItemName {
+  name: string;
+  key: string;
+}
+
+export default function TaskItem({ name, key }: ItemName) {
   return (
-    <>
+    <li className="todo-stack-small">
       <div className="c-cb">
-        <input id="todo-0" type="checkbox" />
+        <input id={key} type="checkbox" />
         <label className="todo-label" htmlFor="todo-0">
           {name}
         </label>
@@ -19,7 +23,6 @@ function ListModel(props: any) {
           Delete <span className="visually-hidden" />
         </button>
       </div>
-    </>
+    </li>
   );
 }
-export default ListModel;

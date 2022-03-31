@@ -5,12 +5,13 @@ import AddItemForm from './components/AddItemForm';
 import TaskDashboard from './components/TaskDashboard';
 
 function App() {
-  const [description, setDescription] = useState([]);
+  const [taskList, setTaskList] = useState<string[]>([]);
+  console.log(taskList);
   return (
     <div className="todoapp stack-large">
       <Title />
-      <AddItemForm setDescription={setDescription} description={description} />
-      <TaskDashboard description={description} />
+      <AddItemForm setTaskList={setTaskList} taskList={taskList} />
+      <TaskDashboard taskList={taskList} />
     </div>
   );
 }
