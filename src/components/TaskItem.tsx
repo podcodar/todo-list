@@ -1,15 +1,14 @@
 import React from 'react';
 
-interface ItemName {
+interface TaskItemProps {
   name: string;
-  key: string;
 }
 
-export default function TaskItem({ name, key }: ItemName) {
+export default function TaskItem({ name }: TaskItemProps) {
   return (
     <li className="todo-stack-small">
       <div className="c-cb">
-        <input id={key} type="checkbox" />
+        <input type="checkbox" />
         <label className="todo-label" htmlFor="todo-0">
           {name}
         </label>
